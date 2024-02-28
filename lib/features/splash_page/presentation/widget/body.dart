@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/features/bottom_Nav_Bar/bottom_nav_bar.dart';
+import 'package:ticketapp/features/login_page/presentation/view/loginview.dart';
 import 'package:ticketapp/features/splash_page/presentation/static/content.dart';
 
 
@@ -60,7 +61,7 @@ class _BodyState extends State<Body> {
                             context,
                             MaterialPageRoute(
                                 builder: ((context) =>
-                                    BottomNavigationBarScreen())));
+                                    LoginScreen())));
                       },
                       child: Container(
                         child: Text("Continue"),
