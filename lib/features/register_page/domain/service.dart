@@ -34,8 +34,14 @@ class VisRegisterService {
       // Login successful
       print('Login successful');
       print(response.body);
+      final Map<String, dynamic> responseBody = json.decode(response.body);
 
-      // You can perform additional actions here after successful login
+      if (responseBody.containsKey('success')) {
+        print(response.body);
+        showSnackBar('Success .', Colors.green);
+
+      }
+      // You can perform dditional actions here after successful login
       showSnackBar('Please Verify Your OTP.', Colors.green);
 
       Navigator.push(

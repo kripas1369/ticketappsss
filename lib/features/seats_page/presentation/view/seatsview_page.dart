@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/config/const/const.dart';
+import 'package:ticketapp/features/booking_page/domain/service.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/calendar_day.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/cienma_seat.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/show_time.dart';
 
 
 class BuyTicket extends StatelessWidget {
-  final title;
+  final String title;
+  final String desc;
+  final String? price;
+  final String time;
 
-  const BuyTicket(this.title, {Key? key}) : super(key: key);
+  const BuyTicket({
+    required this.title,
+    required this.desc,
+    required this.price,
+    required this.time,
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -323,8 +334,67 @@ class BuyTicket extends StatelessWidget {
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal:40.0 , vertical:10.0),
-                    decoration: const BoxDecoration(color:  kActionColor , borderRadius: BorderRadius.only(topLeft: Radius.circular(25.0))),
-                    child: const InkWell(child: Text('Buy' , style: TextStyle(color: Colors.white ,fontSize: 25.0 , fontWeight:FontWeight.bold))),
+                    decoration:  BoxDecoration(color:  kActionColor , borderRadius: BorderRadius.only(topLeft: Radius.circular(25.0))),
+                    child: InkWell(
+                      onTap: () {
+                        // Show payment confirmation dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Confirm Payment"),
+                              content: Text("Are you sure you want to proceed with the payment?"),
+                              actions: <Widget>[
+                                MaterialButton(
+                                  child: Text("Cancel"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop(); // Close the dialog
+                                  },
+                                ),
+                                MaterialButton(
+                                  child: Text("Confirm"),
+                                  onPressed: () {
+                                    // Close the dialog
+                                    Navigator.of(context).pop();
+
+                                    // Show a snackbar after 3 seconds
+                                    Future.delayed(Duration(seconds: 3), () {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text('Booking created successfully!'),
+                                          duration: Duration(seconds: 2),
+                                          action: SnackBarAction(
+                                            label: 'OK',
+                                            onPressed: () {
+                                              // Perform any action when the user clicks on the action button
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    });
+
+                                    // Assuming BookingService.createBooking is asynchronous, it should be awaited
+                                    // await BookingService.createBooking(
+                                    //   nameMovie: title,
+                                    //   detailsMovie: desc,
+                                    //   priceMovie: 12,
+                                    //   timeMovie: time,
+                                    // );
+
+                                    // Perform payment action here
+                                    // Add your payment logic here
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      child: Text(
+                        'Buy',
+                        style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
+                      ),
+                    )
                   )
                 ],
               )

@@ -3,10 +3,21 @@ import 'package:ticketapp/features/seats_page/presentation/view/seatsview_page.d
 import 'package:ticketapp/features/tickets_details_page/presentation/widget/dateandtime_Card.dart';
 
 class DetailScreen extends StatelessWidget {
-  final String title;
-  final String imageUrl;
 
-  const DetailScreen({Key? key, required this.title, required this.imageUrl}) : super(key: key);
+  final String imageUrl;
+  final String title;
+  final String desc;
+  final String price;
+  final String time;
+
+  const DetailScreen({
+    required this.title,
+    required this.imageUrl,
+    required this.desc,
+    required this.price,
+    required this.time,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +83,13 @@ class DetailScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BuyTicket(title)
+                    builder: (context) => BuyTicket(
+                      title: title,
+                      desc: desc,
+                      price: price,
+                      time: time,
+
+                    )
                   ),
                 );
               },
