@@ -49,6 +49,7 @@ dev_dependencies:
   get: ^4.6.6
   circular_bottom_navigation: ^2.3.0
   google_fonts: ^6.1.0
+  image_picker: ^1.0.7
 
 
 # For information on the generic Dart part of this file, see the

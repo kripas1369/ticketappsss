@@ -1,5 +1,5 @@
 class ApiUrl {
-  static const String baseurl = "http://192.168.18.99:5500";
+  static const String baseurl = "http://192.168.1.188:5500";
   // 192.168.18.99
   // static const String baseurl ='http://10.0.2.2:8000';
   // http://localhost:5500/api/movies/get-all-movies

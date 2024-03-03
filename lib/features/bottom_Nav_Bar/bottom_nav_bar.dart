@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
+import 'package:ticketapp/features/booking_page/presentation/view/booking_list.dart';
 import 'package:ticketapp/features/home_page/presentation/view/homeview.dart';
 import 'package:ticketapp/features/profile_page/presentation/view/profileview.dart';
 import 'package:ticketapp/features/ticket_page/presentation/view/ticketview.dart';
@@ -57,17 +58,17 @@ class _BottomNavigationBarScreenState
       case 1:
         return HomeViewPage();
       case 2:
-        return TicketViewPage();
+        return ProfileView();
       case 3:
-        return ProfileViewPage();
+        return TicketViewPage();
       default:
-        return Container();
+        return BookingList();
     }
   }
 
   List<TabItem> tabItems = List.of([
     new TabItem(Icons.bookmark_outlined, "Ticket", Colors.grey),
     new TabItem(Icons.home, "Home", Colors.grey),
-    new TabItem(Icons.people_outline_sharp, "More", Colors.grey),
+    new TabItem(Icons.people_outline_sharp, "Profile", Colors.grey),
   ]);
 }

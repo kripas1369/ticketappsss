@@ -5,19 +5,13 @@ class TicketViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.blue, Colors.green], // Set your gradient colors
-            ),
-          ),
+    return Scaffold(
 
-        ),
-      ],
+      backgroundColor: Colors.red,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
+      body: Text(""),
     );
   }
 }

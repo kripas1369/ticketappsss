@@ -51,206 +51,233 @@ class _HomeViewPageState extends State<HomeViewPage> {
         centerTitle: true,
       ),
       body: _movie != null
-           ? Column(
-             children: [
-               Container(
-                // color: Colors.red,
-                height: 200, // Adjust the height according to your needs
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _movie?.data?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    final movieData = _movie!.data![index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          // Call _onImagePressed when the container is tapped
-                          _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
-                        },
-                        child: Container(
-                          width: 150, // Adjust the width according to your needs
-                          child: Card(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 100,
-                                 decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      movieData.poster ??
-                                        randomImageUrls1[
-                                        Random().nextInt(
-                                            randomImageUrls1.length)],
+           ? SingleChildScrollView(
+             child: Column(
+               children: [
+                 Container(
+                  // color: Colors.red,
+                  height: 240, // Adjust the height according to your needs
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _movie?.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final movieData = _movie!.data![index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            // Call _onImagePressed when the container is tapped
+                            _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
+                          },
+                          child: Container(
+                            width: 150,
+                            // Adjust the width according to your needs
+                            child: Card(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // SizedBox(height: 2,),
+                                  Container(
+                                    height: 130,
+             
+                                   decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        movieData.poster ??
+                                          randomImageUrls1[
+                                          Random().nextInt(
+                                              randomImageUrls1.length)],
+             
+                                      ),
+                                      fit: BoxFit.cover,
+             
                                     )
-                                  )
-                                ),),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-
-                                      Text(
-                                        movieData.title ??
-                                            'randomurls', // If title is null, use 'randomurls'
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                  ),),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+             
+             
+                                        Text(
+                                          movieData.title ??
+                                              'randomurls', // If title is null, use 'randomurls'
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        movieData.description ?? '',
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
+                                        SizedBox(height: 1),
+                                        Text(
+                                          movieData.description ?? '',
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        Text(movieData.language??"")
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-                         ),
-               Container(
-                 // color: Colors.red,
-                 height: 200, // Adjust the height according to your needs
-                 child: ListView.builder(
-                   scrollDirection: Axis.horizontal,
-                   itemCount: _movie?.data?.length ?? 0,
-                   itemBuilder: (context, index) {
-                     final movieData = _movie!.data![index];
-                     return Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: InkWell(
-                         onTap: () {
-                           // Call _onImagePressed when the container is tapped
-                           _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
-                         },
-                         child: Container(
-                           width: 150, // Adjust the width according to your needs
-                           child: Card(
-                             child: Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Container(
-                                   height: 100,
-                                   decoration: BoxDecoration(
-                                       image: DecorationImage(
+                      );
+                    },
+                  ),
+                           ),
+                 Container(
+                   // color: Colors.red,
+                   height: 240, // Adjust the height according to your needs
+                   child: ListView.builder(
+                     scrollDirection: Axis.horizontal,
+                     itemCount: _movie?.data?.length ?? 0,
+                     itemBuilder: (context, index) {
+                       final movieData = _movie!.data![index];
+                       return Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: InkWell(
+                           onTap: () {
+                             // Call _onImagePressed when the container is tapped
+                             _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
+                           },
+                           child: Container(
+                             width: 150,
+                             // Adjust the width according to your needs
+                             child: Card(
+                               child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                 children: [
+                                   // SizedBox(height: 2,),
+                                   Container(
+                                     height: 130,
+             
+                                     decoration: BoxDecoration(
+                                         image: DecorationImage(
                                            image: NetworkImage(
                                              movieData.poster ??
                                                  randomImageUrls1[
                                                  Random().nextInt(
                                                      randomImageUrls1.length)],
-                                           )
-                                       )
-                                   ),),
-                                 Padding(
-                                   padding: const EdgeInsets.all(8.0),
-                                   child: Column(
-                                     crossAxisAlignment:
-                                     CrossAxisAlignment.start,
-                                     children: [
-
-                                       Text(
-                                         movieData.title ??
-                                             'randomurls', // If title is null, use 'randomurls'
-                                         style: TextStyle(
-                                           fontWeight: FontWeight.bold,
+             
+                                           ),
+                                           fit: BoxFit.cover,
+             
+                                         )
+                                     ),),
+                                   Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Column(
+                                       crossAxisAlignment:
+                                       CrossAxisAlignment.start,
+                                       children: [
+             
+             
+                                         Text(
+                                           movieData.title ??
+                                               'randomurls', // If title is null, use 'randomurls'
+                                           style: TextStyle(
+                                             fontWeight: FontWeight.bold,
+                                           ),
                                          ),
-                                       ),
-                                       SizedBox(height: 4),
-                                       Text(
-                                         movieData.description ?? '',
-                                         maxLines: 3,
-                                         overflow: TextOverflow.ellipsis,
-                                       ),
-                                     ],
+                                         SizedBox(height: 1),
+                                         Text(
+                                           movieData.description ?? '',
+                                           maxLines: 3,
+                                           overflow: TextOverflow.ellipsis,
+                                         ),
+                                         Text(movieData.language??"")
+                                       ],
+                                     ),
                                    ),
-                                 ),
-                               ],
+                                 ],
+                               ),
                              ),
                            ),
                          ),
-                       ),
-                     );
-                   },
+                       );
+                     },
+                   ),
                  ),
-               ),
-               Container(
-                 // color: Colors.red,
-                 height: 200, // Adjust the height according to your needs
-                 child: ListView.builder(
-                   scrollDirection: Axis.horizontal,
-                   itemCount: _movie?.data?.length ?? 0,
-                   itemBuilder: (context, index) {
-                     final movieData = _movie!.data![index];
-                     return Padding(
-                       padding: const EdgeInsets.all(8.0),
-                       child: InkWell(
-                         onTap: () {
-                           // Call _onImagePressed when the container is tapped
-                           _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
-                         },
-                         child: Container(
-                           width: 150, // Adjust the width according to your needs
-                           child: Card(
-                             child: Column(
-                               crossAxisAlignment: CrossAxisAlignment.start,
-                               children: [
-                                 Container(
-                                   height: 100,
-                                   decoration: BoxDecoration(
-                                       image: DecorationImage(
+                 Container(
+                   // color: Colors.red,
+                   height: 240, // Adjust the height according to your needs
+                   child: ListView.builder(
+                     scrollDirection: Axis.horizontal,
+                     itemCount: _movie?.data?.length ?? 0,
+                     itemBuilder: (context, index) {
+                       final movieData = _movie!.data![index];
+                       return Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: InkWell(
+                           onTap: () {
+                             // Call _onImagePressed when the container is tapped
+                             _onImagePressed(context, movieData.title ?? 'No Title', movieData.poster??"",movieData.description??"",movieData.genre??"",movieData.createdAt??"");
+                           },
+                           child: Container(
+                             width: 150,
+                             // Adjust the width according to your needs
+                             child: Card(
+                               child: Column(
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                 children: [
+                                   // SizedBox(height: 2,),
+                                   Container(
+                                     height: 130,
+             
+                                     decoration: BoxDecoration(
+                                         image: DecorationImage(
                                            image: NetworkImage(
                                              movieData.poster ??
                                                  randomImageUrls1[
                                                  Random().nextInt(
                                                      randomImageUrls1.length)],
-                                           )
-                                       )
-                                   ),),
-                                 Padding(
-                                   padding: const EdgeInsets.all(8.0),
-                                   child: Column(
-                                     crossAxisAlignment:
-                                     CrossAxisAlignment.start,
-                                     children: [
-
-                                       Text(
-                                         movieData.title ??
-                                             'randomurls', // If title is null, use 'randomurls'
-                                         style: TextStyle(
-                                           fontWeight: FontWeight.bold,
+             
+                                           ),
+                                           fit: BoxFit.cover,
+             
+                                         )
+                                     ),),
+                                   Padding(
+                                     padding: const EdgeInsets.all(8.0),
+                                     child: Column(
+                                       crossAxisAlignment:
+                                       CrossAxisAlignment.start,
+                                       children: [
+             
+             
+                                         Text(
+                                           movieData.title ??
+                                               'randomurls', // If title is null, use 'randomurls'
+                                           style: TextStyle(
+                                             fontWeight: FontWeight.bold,
+                                           ),
                                          ),
-                                       ),
-                                       SizedBox(height: 4),
-                                       Text(
-                                         movieData.description ?? '',
-                                         maxLines: 3,
-                                         overflow: TextOverflow.ellipsis,
-                                       ),
-                                     ],
+                                         SizedBox(height: 1),
+                                         Text(
+                                           movieData.description ?? '',
+                                           maxLines: 3,
+                                           overflow: TextOverflow.ellipsis,
+                                         ),
+                                         Text(movieData.language??"")
+                                       ],
+                                     ),
                                    ),
-                                 ),
-                               ],
+                                 ],
+                               ),
                              ),
                            ),
                          ),
-                       ),
-                     );
-                   },
+                       );
+                     },
+                   ),
                  ),
-               ),
-
-
-             ],
+                 SizedBox(height: 123,),
+             
+             
+               ],
+             ),
            )
           : Center(
         child: CircularProgressIndicator(),
