@@ -4,6 +4,7 @@ import 'package:ticketapp/features/bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ticketapp/features/home_page/presentation/view/homeview.dart';
 import 'package:ticketapp/features/login_page/domain/service.dart';
 import 'package:ticketapp/features/register_page/presentation/view/registerview.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
@@ -48,62 +50,29 @@ class _LoginScreenState extends State<LoginScreen> {
                 DefaultButton(
                   press: () async {
                     if (_formKey.currentState!.validate()) {
-                      setState(() {});
+                     // Save email
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => BottomNavigationBarScreen()),
                       );
+                      SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                      await prefs.setString(
+                          'email', mobileController.text);
                       VisLoginService().loginUser(
                         password: passwordController.text,
                         isEmail: mobileController.text,
                         context: context,
                       );
-                    } else {
-                      setState(() {});
                     }
                   },
                   text: "Login",
                 ),
-                // ElevatedButton(
-                //   onPressed: () async {
-                //     if (_formKey.currentState!.validate()) {
-                //       setState(() {});
-                //       Navigator.push(
-                //         context,
-                //         MaterialPageRoute(
-                //             builder: (context) => BottomNavigationBarScreen()),
-                //       );
-                //       VisLoginService().loginUser(
-                //         password: passwordController.text,
-                //         isEmail: mobileController.text,
-                //         context: context,
-                //       );
-                //       } else {
-                //       setState(() {});
-                //     }
-                //   },
-                //   style: ElevatedButton.styleFrom(
-                //     primary: Colors.blue,
-                //     minimumSize: const Size(400, 60),
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(40),
-                //     ),
-                //   ),
-                //   child: const Text(
-                //     "Login",
-                //     style: TextStyle(fontSize: 24, color: Colors.white),
-                //   ),
-                // ),
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const ForgotScreen(),
-                    //   ),
-                    // );
+
                   },
                   child: const Text(
                     "Forgot Password?",

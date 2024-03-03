@@ -11,8 +11,8 @@ class CustomHeading extends StatelessWidget {
       text,
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Color(0xFF090A0A),
-        fontSize: 35,
+        color: Colors.white,
+        fontSize: 23,
         fontFamily: 'DM Sans',
         fontWeight: FontWeight.w700,
       ),

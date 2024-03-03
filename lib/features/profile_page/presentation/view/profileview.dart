@@ -7,6 +7,8 @@ import 'package:ticketapp/core/utils/circularprofileimage.dart';
 import 'package:ticketapp/core/utils/sizebox.dart';
 import 'package:ticketapp/core/utils/text.dart';
 import 'package:ticketapp/core/utils/textfield.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences package
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -14,7 +16,24 @@ class ProfileView extends StatefulWidget {
   State<ProfileView> createState() => _ProfileViewState();
 }
 
+
 class _ProfileViewState extends State<ProfileView> {
+  String? email = ''; // Initialize email variable
+
+  @override
+  void initState() {
+    super.initState();
+    getEmail(); // Call getEmail function when the widget initializes
+  }
+
+  // Function to get email from shared preferences
+  void getEmail() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      email = prefs.getString('email'); // Retrieve email from shared preferences
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,7 +169,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   width: 5,
                                 ),
                                 Text(
-                                 'mobile_number',
+                                 '9869472645',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -169,7 +188,7 @@ class _ProfileViewState extends State<ProfileView> {
                                   width: 5,
                                 ),
                                 Text(
-                                  'email',
+                                  'basanta@gmail.com',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,

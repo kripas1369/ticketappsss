@@ -50,6 +50,7 @@ dev_dependencies:
   circular_bottom_navigation: ^2.3.0
   google_fonts: ^6.1.0
   image_picker: ^1.0.7
+  shared_preferences: ^2.2.2
 
 
 # For information on the generic Dart part of this file, see the
