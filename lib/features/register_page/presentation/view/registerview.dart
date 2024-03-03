@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/core/utils/button.dart';
 import 'package:ticketapp/features/login_page/presentation/view/loginview.dart';
 import 'package:ticketapp/features/register_page/domain/service.dart';
 
@@ -54,9 +55,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 20),
                 buildTextField("Password", passwordController, isPassword: true),
                 const SizedBox(height: 20),
-
-                ElevatedButton(
-                  onPressed: () async {
+                DefaultButton(
+                  press: () async {
                     if (_formKey.currentState!.validate()) {
                       VisRegisterService().registerOrganization(
                         email: emailController.text,
@@ -67,18 +67,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     setState(() {});
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    minimumSize: const Size(400, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                  child: const Text(
-                    "Register",
-                    style: TextStyle(fontSize: 24),
-                  ),
+                  text: "Register",
                 ),
+
+
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {

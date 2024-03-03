@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/core/utils/button.dart';
 import 'package:ticketapp/features/bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ticketapp/features/home_page/presentation/view/homeview.dart';
 import 'package:ticketapp/features/login_page/domain/service.dart';
@@ -44,8 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 buildTextField("Password", passwordController, isPassword: true),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () async {
+                DefaultButton(
+                  press: () async {
                     if (_formKey.currentState!.validate()) {
                       setState(() {});
                       Navigator.push(
@@ -58,22 +59,42 @@ class _LoginScreenState extends State<LoginScreen> {
                         isEmail: mobileController.text,
                         context: context,
                       );
-                      } else {
+                    } else {
                       setState(() {});
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    minimumSize: const Size(400, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                  child: const Text(
-                    "Login",
-                    style: TextStyle(fontSize: 24, color: Colors.white),
-                  ),
+                  text: "Login",
                 ),
+                // ElevatedButton(
+                //   onPressed: () async {
+                //     if (_formKey.currentState!.validate()) {
+                //       setState(() {});
+                //       Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //             builder: (context) => BottomNavigationBarScreen()),
+                //       );
+                //       VisLoginService().loginUser(
+                //         password: passwordController.text,
+                //         isEmail: mobileController.text,
+                //         context: context,
+                //       );
+                //       } else {
+                //       setState(() {});
+                //     }
+                //   },
+                //   style: ElevatedButton.styleFrom(
+                //     primary: Colors.blue,
+                //     minimumSize: const Size(400, 60),
+                //     shape: RoundedRectangleBorder(
+                //       borderRadius: BorderRadius.circular(40),
+                //     ),
+                //   ),
+                //   child: const Text(
+                //     "Login",
+                //     style: TextStyle(fontSize: 24, color: Colors.white),
+                //   ),
+                // ),
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {

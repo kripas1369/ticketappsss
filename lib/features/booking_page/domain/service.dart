@@ -1,44 +1,25 @@
-import 'package:http/http.dart' as http;
+// movie_service.dart
+
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:ticketapp/core/network/apiurls.dart';
+import 'package:ticketapp/features/booking_page/data/model.dart';
 
-class BookingService {
-  static Future<void> createBooking({
-    required String nameMovie,
-    required String detailsMovie,
-    required int priceMovie,
-    required String timeMovie,
-  }) async {
-    final url = Uri.parse('http://localhost:5500/api/appbooking/movies');
-    final Map<String, dynamic> requestBody = {
-      "success": true,
-      "message": "Booking created successfully",
-      "booking": {
-        "name_movie": nameMovie,
-        "details_movie": detailsMovie,
-        "price_movie": priceMovie,
-        "time_movie": timeMovie,
-      }
-    };
+class MovieService {
+  Future<List<Movies>?> fetchMovies() async {
+    final response = await http.get(Uri.parse('${ApiUrl.baseurl}/api/appbooking/movies'));
 
-    try {
-      final response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(requestBody),
-      );
-
-      if (response.statusCode == 200) {
-        print('Booking successful');
-        // Handle success as per your requirement
-      } else {
-        print('Failed to create booking: ${response.statusCode}');
-        // Handle error as per your requirement
-      }
-    } catch (e) {
-      print('Error creating booking: $e');
-      // Handle error as per your requirement
+    if (response.statusCode == 200) {
+      final decodedResponse = json.decode(response.body);
+      final bookingList = BookingList.fromJson(decodedResponse);
+      print(response.body);
+      print("^^^^^^^^^^^^^^^");
+      return bookingList.movies;
+    } else {
+      print(response.body);
+      print("***************");
+      throw Exception('Failed to load movies');
     }
   }
 }
+

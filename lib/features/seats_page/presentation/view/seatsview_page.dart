@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ticketapp/config/const/const.dart';
+import 'package:ticketapp/features/bill_page/presentation/bill_page.dart';
 import 'package:ticketapp/features/booking_page/domain/service.dart';
+import 'package:ticketapp/features/seats_page/data/booking_service.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/calendar_day.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/cienma_seat.dart';
 import 'package:ticketapp/features/seats_page/presentation/widget/show_time.dart';
@@ -8,11 +10,13 @@ import 'package:ticketapp/features/seats_page/presentation/widget/show_time.dart
 
 class BuyTicket extends StatelessWidget {
   final String title;
+  final String image;
   final String desc;
   final String? price;
   final String time;
 
   const BuyTicket({
+    required this.image,
     required this.title,
     required this.desc,
     required this.price,
@@ -338,56 +342,9 @@ class BuyTicket extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         // Show payment confirmation dialog
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Confirm Payment"),
-                              content: Text("Are you sure you want to proceed with the payment?"),
-                              actions: <Widget>[
-                                MaterialButton(
-                                  child: Text("Cancel"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop(); // Close the dialog
-                                  },
-                                ),
-                                MaterialButton(
-                                  child: Text("Confirm"),
-                                  onPressed: () {
-                                    // Close the dialog
-                                    Navigator.of(context).pop();
-
-                                    // Show a snackbar after 3 seconds
-                                    Future.delayed(Duration(seconds: 3), () {
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                          content: Text('Booking created successfully!'),
-                                          duration: Duration(seconds: 2),
-                                          action: SnackBarAction(
-                                            label: 'OK',
-                                            onPressed: () {
-                                              // Perform any action when the user clicks on the action button
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    });
-
-                                    // Assuming BookingService.createBooking is asynchronous, it should be awaited
-                                    // await BookingService.createBooking(
-                                    //   nameMovie: title,
-                                    //   detailsMovie: desc,
-                                    //   priceMovie: 12,
-                                    //   timeMovie: time,
-                                    // );
-
-                                    // Perform payment action here
-                                    // Add your payment logic here
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  BillPage(title: title, price:"23", desc:desc, image: image,)),
                         );
                       },
                       child: Text(

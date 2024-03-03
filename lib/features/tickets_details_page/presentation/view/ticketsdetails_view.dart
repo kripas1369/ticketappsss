@@ -87,7 +87,7 @@ class DetailScreen extends StatelessWidget {
                       title: title,
                       desc: desc,
                       price: price,
-                      time: time,
+                      time: time, image: imageUrl,
 
                     )
                   ),

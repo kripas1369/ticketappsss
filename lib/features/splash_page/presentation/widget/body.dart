@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ticketapp/core/utils/button.dart';
 import 'package:ticketapp/features/bottom_Nav_Bar/bottom_nav_bar.dart';
 import 'package:ticketapp/features/login_page/presentation/view/loginview.dart';
 import 'package:ticketapp/features/splash_page/presentation/static/content.dart';
@@ -12,10 +13,11 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
-    {"text": "We help people connect with ticket book.", "image": "assets/1.jpg"},
+    {"text": "We help people connect with ticket book.",
+      "image": "https://img.freepik.com/premium-vector/movie-ticket-logo-template-design_20029-891.jpg"},
     {
       "text": "We show the easy way to ticket. \nJust stay at home with us",
-      "image": "assets/1.jpg"
+      "image": "https://www.casonstravels.com/system/crud/images/service/13/thumbnail.jpg"
     },
   ];
   @override
@@ -54,18 +56,17 @@ class _BodyState extends State<Body> {
                             (index) => buildDot(index: index),
                       ),
                     ),
-                    Spacer(flex: 3),
-                    InkWell(
-                      onTap: () {
+                    Spacer(flex: 2),
+
+                    DefaultButton(
+                      press: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: ((context) =>
                                     LoginScreen())));
                       },
-                      child: Container(
-                        child: Text("Continue"),
-                      ),
+                      text: "Continue",
                     ),
                     // MaterialButton(
                     //   color: kPrimaryColor,

@@ -62,7 +62,7 @@ class _BottomNavigationBarScreenState
       case 3:
         return TicketViewPage();
       default:
-        return BookingList();
+        return MovieListScreen();
     }
   }
 
