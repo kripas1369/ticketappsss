@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ticketapp/core/utils/button.dart';
 import 'package:ticketapp/features/bottom_Nav_Bar/bottom_nav_bar.dart';
-import 'package:ticketapp/features/home_page/presentation/view/homeview.dart';
 import 'package:ticketapp/features/login_page/domain/service.dart';
-import 'package:ticketapp/features/register_page/presentation/view/registerview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ticketapp/features/register_page/presentation/view/registerview.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,11 +13,35 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController mobileController = TextEditingController(text: "ex123@example.com");
-  TextEditingController  passwordController = TextEditingController(text: "password123");
+  TextEditingController passwordController = TextEditingController(text: "password123");
+  late Connectivity _connectivity;
+  bool _isConnected = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _connectivity = Connectivity();
+    _checkConnectivity();
+    _connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
+      _checkConnectivity();
+    });
+  }
+
+  Future<void> _checkConnectivity() async {
+    final ConnectivityResult connectivityResult = await _connectivity.checkConnectivity();
+    if (connectivityResult == ConnectivityResult.wifi) {
+      setState(() {
+        _isConnected = true;
+      });
+    } else {
+      setState(() {
+        _isConnected = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +71,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 buildTextField("Password", passwordController, isPassword: true),
                 const SizedBox(height: 20),
+                if (!_isConnected)
+                  Text(
+                    "No WiFi connection detected.",
+                    style: TextStyle(color: Colors.red),
+                  ),
                 DefaultButton(
                   press: () async {
                     if (_formKey.currentState!.validate()) {
-                     // Save email
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -72,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
                 InkWell(
                   onTap: () {
-
+                    // Forgot password logic
                   },
                   child: const Text(
                     "Forgot Password?",
@@ -93,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
+                            builder: (context) =>  RegisterScreen(),
                           ),
                         );
                       },

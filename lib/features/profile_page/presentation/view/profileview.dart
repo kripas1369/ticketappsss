@@ -25,7 +25,6 @@ class _ProfileViewState extends State<ProfileView> {
     super.initState();
     getEmail(); // Call getEmail function when the widget initializes
   }
-
   // Function to get email from shared preferences
   void getEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -100,11 +99,9 @@ class _ProfileViewState extends State<ProfileView> {
                           ),
                         ],
                       ),
-            
                       SizedBox(
                         height: 10,
                       ),
-            
                       Container(
                         width: MediaQuery.of(context).size.width,
                         child: Column(
@@ -204,7 +201,6 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                       ),
-            
                       // SizedBox(width:,),
                     ],
                   ),
@@ -212,7 +208,7 @@ class _ProfileViewState extends State<ProfileView> {
                 
               ],
             ),
-           SizedBox(height: 12,),
+            SizedBox(height: 12,),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

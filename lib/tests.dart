@@ -1,64 +1,78 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:ticketapp/core/network/apiurls.dart';
-
-
-
-class MyHomePages extends StatelessWidget {
-  final String apiUrl = "${ApiUrl.baseurl}/api/appbooking/movies"; // Replace with your API URL
-
-  Future<void> createMovie(BuildContext context) async {
-    final response = await http.post(
-      Uri.parse(apiUrl),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(
-        <String, dynamic>{
-          'name_movie': 'kripassssss',
-          'details_movie': 'Action-packed superhero movie',
-          'price_movie': 12,
-          'time_movie': '3:00 PM',
-        },
-      ),
-    );
-
-    if (response.statusCode == 201) {
-      // If the server returns a 201 CREATED response,
-      // then the movie was successfully created.
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Movie created successfully"),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    } else {
-      // If the server did not return a 201 CREATED response,
-      // then show an error message.
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Failed to create movie"),
-          duration: Duration(seconds: 2),
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("POST Request Example"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            createMovie(context);
-          },
-          child: Text('Create Movie'),
-        ),
-      ),
-    );
-  }
-}
+// import 'package:flutter/material.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:khalti_flutter/khalti_flutter.dart';
+// import 'package:khalti_flutter_example/app_preference.dart';
+// import 'package:khalti_flutter_example/home_page.dart';
+// import 'package:provider/provider.dart';
+// import 'package:khalti_flutter_example/l10n/app_localizations.dart';
+//
+// const String testPublicKey = 'test_public_key_dc74e0fd57cb46cd93832aee0a507256';
+//
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return KhaltiScope(
+//       publicKey: testPublicKey,
+//       enabledDebugging: true,
+//       builder: (context, navKey) {
+//         return ChangeNotifierProvider<AppPreferenceNotifier>(
+//           create: (_) => AppPreferenceNotifier(),
+//           builder: (context, _) {
+//             return Consumer<AppPreferenceNotifier>(
+//               builder: (context, appPreference, _) {
+//                 return MaterialApp(
+//                   title: 'Khalti Payment Gateway',
+//                   supportedLocales: const [
+//                     Locale('en', 'US'),
+//                     Locale('ne', 'NP'),
+//                   ],
+//                   theme: ThemeData(
+//                     colorSchemeSeed: Colors.deepPurple,
+//                     useMaterial3: true,
+//                   ),
+//                   debugShowCheckedModeBanner: false,
+//                   navigatorKey: navKey,
+//                   localizationsDelegates: const [
+//                     KhaltiLocalizations.delegate,
+//                     AppLocalizations.delegate,
+//                     GlobalMaterialLocalizations.delegate,
+//                     GlobalCupertinoLocalizations.delegate,
+//                     GlobalWidgetsLocalizations.delegate,
+//                   ],
+//                   routes: {
+//                     '/': (_) => const HomePage(key: Key('home')),
+//                   },
+//                   onGenerateInitialRoutes: (route) {
+//                     // Only used for handling response from KPG in Flutter Web.
+//                     if (route.startsWith('/kpg/')) {
+//                       final uri = Uri.parse('https://khalti.com$route');
+//                       return [
+//                         MaterialPageRoute(
+//                           builder: (context) => HomePage(
+//                             key: const Key('kpg-home'),
+//                             params: uri.queryParameters,
+//                           ),
+//                         ),
+//                       ];
+//                     }
+//                     return Navigator.defaultGenerateInitialRoutes(
+//                       navKey.currentState!,
+//                       route,
+//                     );
+//                   },
+//                 );
+//               },
+//             );
+//           },
+//         );
+//       },
+//     );
+//   }
+// }
