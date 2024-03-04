@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:ticketapp/core/common/global.dart';
 import 'package:ticketapp/core/network/apiurls.dart';
 import 'package:ticketapp/features/home_page/presentation/view/homeview.dart';
+import 'package:ticketapp/features/login_page/presentation/view/loginview.dart';
 
 
 class VisRegisterService {
@@ -47,7 +48,7 @@ class VisRegisterService {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => HomeViewPage()),
+            builder: (context) => LoginScreen()),
       );
       showSnackBar('Please Verify Your OTP.', Colors.green);
 

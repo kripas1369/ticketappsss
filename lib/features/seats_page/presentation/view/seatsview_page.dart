@@ -293,7 +293,7 @@ class BuyTicket extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('tom Cineplex ', style: kMainTextStyle),
+                          Text('Nepali Cineplex ', style: kMainTextStyle),
                           const Text('hero , 1205 Nepal, KTM',
                               overflow: TextOverflow.ellipsis,
                               style:

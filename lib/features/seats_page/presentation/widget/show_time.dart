@@ -45,7 +45,7 @@ class _ShowTimeState extends State<ShowTime> {
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold),
             ),
-            Text('From \$${widget.price}',
+            Text('From Rs. ${widget.price}',
                 style: const TextStyle(color: Colors.white, fontSize: 18.0))
           ],
         ),

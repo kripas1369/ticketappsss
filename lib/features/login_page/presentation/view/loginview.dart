@@ -15,8 +15,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController mobileController = TextEditingController(text: "ex123@example.com");
-  TextEditingController passwordController = TextEditingController(text: "password123");
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   late Connectivity _connectivity;
   bool _isConnected = false;
 
