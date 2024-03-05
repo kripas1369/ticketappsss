@@ -12,34 +12,40 @@ class VisLoginService {
     required String password,
     bool isRemember = false,
   }) async {
-    showLoading();
+    // showLoading();
     print(password);
 
     Map<String, dynamic> requestBody = {
       "email": isEmail,
       "password": password
     };
-
     final response = await http.post(Uri.parse(ApiUrl.loginurl),
         headers: {"Content-Type": "application/json"},
         body: json.encode(requestBody));
-
-    print("Response : ${response.body}");
-    print(response.statusCode);
     if (response.statusCode == 200) {
       hideLoading();
       // Login successful
       print('Login successful');
-      showSnackBar('Login successful', Colors.green);
       Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => BottomNavigationBarScreen()),
       );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Movie booked successfully"),
+          duration: Duration(seconds: 2),
+        ),
+      );
 
     }  else {
       hideLoading();
-      // Other error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Movie booked successfully"),
+          duration: Duration(seconds: 2),
+        ),
+      );
       print('An error occurred. Please try again later.');
       showSnackBar('An error occurred. Please try again later.', Colors.red);
     }

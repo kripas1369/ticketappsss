@@ -79,6 +79,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 DefaultButton(
                   press: () async {
                     if (_formKey.currentState!.validate()) {
+                      VisLoginService().loginUser(
+                        password: passwordController.text,
+                        isEmail: mobileController.text,
+                        context: context,
+                      );
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -88,11 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       await SharedPreferences.getInstance();
                       await prefs.setString(
                           'email', mobileController.text);
-                      VisLoginService().loginUser(
-                        password: passwordController.text,
-                        isEmail: mobileController.text,
-                        context: context,
-                      );
                     }
                   },
                   text: "Login",

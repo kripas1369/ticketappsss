@@ -46,7 +46,6 @@ Future<void> createMovie(BuildContext context,
         content: Text("Movie booked successfully"),
         duration: Duration(seconds: 2),
       ),
-
     );
   } else {
     // If the server did not return a 201 CREATED response,

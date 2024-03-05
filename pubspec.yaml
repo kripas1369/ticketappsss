@@ -49,6 +49,10 @@ dev_dependencies:
   connectivity_plus: ^5.0.2
   provider: ^6.1.2
   khalti_flutter: ^3.0.0
+  test_cov_console: ^0.2.2
+  mockito: ^5.4.4
+  all_sensors: ^0.4.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -7,7 +7,8 @@ import 'package:ticketapp/core/utils/circularprofileimage.dart';
 import 'package:ticketapp/core/utils/sizebox.dart';
 import 'package:ticketapp/core/utils/text.dart';
 import 'package:ticketapp/core/utils/textfield.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences package
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ticketapp/features/login_page/presentation/view/loginview.dart'; // Import shared_preferences package
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -288,6 +289,34 @@ class _ProfileViewState extends State<ProfileView> {
                     ListTile(
                       title: Text("Privacy policy",style: TextStyle(fontSize: 20,color: Colors.white),),
                       leading: Icon(Icons.policy,size: 25,color: Colors.white,),
+                      trailing: Text("",style: TextStyle(fontSize: 15,color: Colors.white)),
+                    ),
+                  ],
+                ),
+                // width: 123,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(15)
+                ),
+                // height: 123,
+                child: Column(
+                  children: [
+
+                    ListTile(
+                      onTap: (){
+                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+
+                      },
+                      title: Text("LogOut",style: TextStyle(fontSize: 20,color: Colors.red),),
+                      leading: Icon(Icons.logout,size: 25,color: Colors.red,),
                       trailing: Text("",style: TextStyle(fontSize: 15,color: Colors.white)),
                     ),
                   ],
