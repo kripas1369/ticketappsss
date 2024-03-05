@@ -6,8 +6,11 @@ import 'package:ticketapp/features/home_page/data/homeModel.dart';
 import 'package:ticketapp/features/home_page/domain/service.dart';
 import 'package:ticketapp/features/tickets_details_page/presentation/view/ticketsdetails_view.dart';
 import '../widget/ticket_Card.dart';
-
 import 'package:all_sensors/all_sensors.dart';
+
+
+
+
 
 class HomeViewPage extends StatefulWidget {
   const HomeViewPage({Key? key}) : super(key: key);
